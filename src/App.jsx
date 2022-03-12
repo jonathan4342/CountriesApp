@@ -1,8 +1,9 @@
+import { RouteApp } from "./routers/RouteApp";
 
 function App() {
   return (
     <div>
-      hola mundo
+      <RouteApp/>
     </div>
   );
 }
