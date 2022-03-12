@@ -1,0 +1,15 @@
+.card-countries{
+    background-color:$s;
+    color:rgba(14, 13, 13, 0.822);
+    font-family: "Helvetica Neue",Helvetica,Arial;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    box-shadow: 5px 5px 5px $c;
+    border-radius:10px;
+    padding-top: 5px;
+    cursor: pointer;
+}
+.card-countries img{
+    border-radius:5px
+}
