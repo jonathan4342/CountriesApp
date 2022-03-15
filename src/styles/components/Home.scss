@@ -10,23 +10,49 @@ body {
     padding: 40px;
     gap: 3rem;
 }
-.input_Search{
-    height:7vh;
-    width:40vw;
+
+.input_Search {
+    height: 7vh;
+    width: 40vw;
     border: 0;
-    border-radius:6px;
-    color:$IMC
+    border-radius: 6px;
+    color: $IMC;
+
+    &:focus {
+        border: 1px solid white;
+        outline: none
+    }
 }
 
-.container_filter{
-    display:flex;
-    justify-content:space-between;
+.container_filter {
+    display: flex;
     padding: 50px;
+    justify-content: space-between;
     background-color: $FMC;
+    align-items: center;
+    select {
+        height: 7vh;
+        width: 10vw;
+        border-radius: 5px;
+        border: 1px solid white;
+        &:focus {
+            border: 1px solid white;
+            outline: none
+        }
+        option {
+            border: 1px solid white;
+            border-radius: 10px;
+            &:focus {
+                border: 1px solid white;
+                outline: none
+            }
+        }
+    }
 }
-.container_inicio{
-    display:flex;
-    justify-content:space-between;
-    font-size:14px;
+
+.container_inicio {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
     color: $LMC;
 }

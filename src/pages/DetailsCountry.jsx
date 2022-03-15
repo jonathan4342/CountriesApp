@@ -24,9 +24,9 @@ export const DetailsCountry = () => {
     }
     return (
         <>
-            <button onClick={volver} className="btn"><BiArrowBack className='emoticon' /> Back</button>
             <div className="container_data">
                 <div className="container_img">
+                    <button onClick={volver} className="btn"> <BiArrowBack className='emoticon' /> Back</button>
                     <img src={info?.flags.png} alt="Img" width="500px" height="400px" />
                 </div>
                 <div className="container_info">

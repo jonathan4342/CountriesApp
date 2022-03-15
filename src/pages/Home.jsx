@@ -1,26 +1,41 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CardCountries } from '../components/CardCountries'
 import { getAllCountries } from '../redux/actions/AllContries'
-import { css } from "@emotion/react";
-import { MoonLoader } from 'react-spinners';
+import { FilterCountriesName } from '../redux/actions/FilterCountriesName'
+import { FilterCountriesRegion } from '../redux/actions/FilterCountriesRegion'
 
 export const Home = () => {
 
     const dispatch = useDispatch()
-    const info = useSelector(state => state.countries)
-    const override = css`
-        display: block;
-        margin: 0 auto;
-        border-color: red;
-  `;
+    const { countriesF, searchCountry} = useSelector(state => state)
+    const [search,setSearch]=useState('')
+    const [countryFilter,setCountryFilter]=useState([])
+
     useEffect(() => {
         dispatch(getAllCountries())
     }, [])
+    //funcion para el buscador
 
-    if (!info) {
-        return <MoonLoader
-            css={override} size={60} />
+    useEffect(() =>{
+        dispatch(FilterCountriesName(search))
+    },[search])
+
+    useEffect(()=>{
+        setCountryFilter(countriesF)
+    },[countriesF])
+
+    useEffect(()=>{
+        setCountryFilter(countriesF?.filter(el=>(el.name.toLowerCase().includes(searchCountry.toLowerCase()))))
+    },[ searchCountry])
+
+
+    const nameCountry=(e)=>{
+        setSearch(e.target.value)
+    }
+    const filterRegion =(e)=>{
+        dispatch(FilterCountriesRegion(e.target.value))
+        console.log(e.target.value);
     }
     return (
         <>
@@ -29,14 +44,26 @@ export const Home = () => {
                 <h2>Dark Mode</h2>
             </div>
             <div className="container_filter">
+                {/* <BsSearch className="emoticon b"/> */}
                 <input type="text"
-                    placeholder='Search for a country...'
-                    className="input_Search" />
-                <select></select>
+                    placeholder={` Search for a country...`}
+                    className="input_Search"
+                    name='search'
+                    value={search}
+                    onChange={nameCountry}
+                />
+                <select onChange={filterRegion}>
+                    <option value='all'>All</option>
+                    <option value='africa'>Africa</option>
+                    <option value='americas'>America</option>
+                    <option value='asia'>Asia</option>
+                    <option value='europe'>Europa</option>
+                    <option value='oceania'>Oceania</option>
+                </select>
             </div>
             <div className="container_all">
                 {
-                    info.map(el => (<CardCountries key={el.numericCode} id={el.alpha3Code} img={el.flags.png} name={el.name} poblacion={el.population} capital={el.capital} region={el.region} />))
+                    countryFilter.map(el => (<CardCountries key={el.numericCode} id={el.alpha3Code} img={el.flags.png} name={el.name} poblacion={el.population} capital={el.capital} region={el.region} />))
                 }
             </div>
         </>
