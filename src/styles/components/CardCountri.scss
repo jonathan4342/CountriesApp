@@ -21,10 +21,10 @@
     align-items: baseline;
     ul li{
         list-style:none;
-        color:$LMC;
+        color:$LETRASLi
     }
     ul li span{
-        color:$IMC
+        color:$INPUT
     }
 }
 .container_info-3 h4{
@@ -38,7 +38,7 @@
         width:6vw;
         border-radius: 5px;
         border: 1px solid #ccc;
-        box-shadow: 1px 1px 2px 2px $IMC;
+        box-shadow: 1px 1px 2px 2px $INPUT;
         cursor: pointer;
     }
     
@@ -64,6 +64,6 @@
         border-radius: 10px;
         padding-left: 25px;
         border: 1px solid #ccc;
-        box-shadow: 1px 1px 2px 2px $IMC;
+        box-shadow: 1px 1px 2px 2px $INPUT;
     }
 }

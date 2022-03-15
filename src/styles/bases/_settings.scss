@@ -1,9 +1,10 @@
 
 // FMO= fondo en modo oscuro  LMC=letras modo claro  TMOEMC= texto modo claro y elementos en modo claro  IMC=input modo claro 
 // FMC=fondo modo claro 
-$FMC:hsl(0, 0%, 98%);
-$TMOEMC:hsl(0, 0%, 100%);
-$IMC: hsl(0, 0%, 52%);
-$LMC:hsl(200, 15%, 8%);
-$FMO:hsl(207, 26%, 17%);
-$EMO:hsl(207, 26%, 17%);
+$ELEMENTOS:hsl(0, 0%, 100%);
+$FONDOLi:hsl(0, 0%, 98%);
+$INPUT: hsl(0, 0%, 52%);
+$LETRASLi:hsl(200, 15%, 8%);
+
+$FONDOOs:hsl(207, 26%, 17%);
+$ELEMENTOSOs: hsl(209, 23%, 22%);

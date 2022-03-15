@@ -4,7 +4,7 @@ body {
 }
 
 .container_all {
-    background-color: $FMC;
+    background-color: $FONDOLi;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     padding: 40px;
@@ -16,7 +16,7 @@ body {
     width: 40vw;
     border: 0;
     border-radius: 6px;
-    color: $IMC;
+    color: $INPUT;
 
     &:focus {
         border: 1px solid white;
@@ -28,7 +28,7 @@ body {
     display: flex;
     padding: 50px;
     justify-content: space-between;
-    background-color: $FMC;
+    background-color: $FONDOLi;
     align-items: center;
     select {
         height: 7vh;
@@ -52,7 +52,23 @@ body {
 
 .container_inicio {
     display: flex;
-    justify-content: space-between;
     font-size: 14px;
-    color: $LMC;
+    color: $LETRASLi;
+    padding:20px;
+    h2{
+        padding-left: 30px;
+    }
+}
+.btn{
+    display:flex;
+    padding-left:41rem ;
+    gap: 4rem;
+    background-color: $FONDOLi;
+    button{
+        height:5vh;
+        width:5vw;
+        border:1px solid #ccc;
+        border-radius:7px;
+        cursor:pointer;
+    }
 }

@@ -8,40 +8,52 @@ import { FilterCountriesRegion } from '../redux/actions/FilterCountriesRegion'
 export const Home = () => {
 
     const dispatch = useDispatch()
-    const { countriesF, searchCountry} = useSelector(state => state)
-    const [search,setSearch]=useState('')
-    const [countryFilter,setCountryFilter]=useState([])
+    const { countriesF, searchCountry } = useSelector(state => state)
+    const [search, setSearch] = useState('')
+    const [countryFilter, setCountryFilter] = useState([])
+    const [currentPage, setCurrentPage] = useState(0)
 
     useEffect(() => {
         dispatch(getAllCountries())
     }, [])
     //funcion para el buscador
 
-    useEffect(() =>{
+    useEffect(() => {
         dispatch(FilterCountriesName(search))
-    },[search])
+    }, [search])
 
-    useEffect(()=>{
+    useEffect(() => {
         setCountryFilter(countriesF)
-    },[countriesF])
+    }, [countriesF])
 
-    useEffect(()=>{
-        setCountryFilter(countriesF?.filter(el=>(el.name.toLowerCase().includes(searchCountry.toLowerCase()))))
-    },[ searchCountry])
+    useEffect(() => {
+        setCountryFilter(countriesF?.filter(el => (el.name.toLowerCase().includes(searchCountry.toLowerCase()))))
+    }, [searchCountry])
 
 
-    const nameCountry=(e)=>{
+    const nameCountry = (e) => {
         setSearch(e.target.value)
     }
-    const filterRegion =(e)=>{
+    const filterRegion = (e) => {
         dispatch(FilterCountriesRegion(e.target.value))
-        console.log(e.target.value);
+    }
+    const paginado = () => {
+        return countryFilter.slice(currentPage, currentPage + 8)
+    }
+    const nextPage = () => {
+        if (countriesF?.filter(el => (el.name.toLowerCase().includes(searchCountry.toLowerCase()))).length > currentPage + 8) {
+            setCurrentPage(currentPage + 8)
+        }
+    }
+    const prevPage = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 8)
+        }
     }
     return (
         <>
             <div className="container_inicio">
                 <h2>Where in the world?</h2>
-                <h2>Dark Mode</h2>
             </div>
             <div className="container_filter">
                 {/* <BsSearch className="emoticon b"/> */}
@@ -63,9 +75,14 @@ export const Home = () => {
             </div>
             <div className="container_all">
                 {
-                    countryFilter.map(el => (<CardCountries key={el.numericCode} id={el.alpha3Code} img={el.flags.png} name={el.name} poblacion={el.population} capital={el.capital} region={el.region} />))
+                    paginado().map(el => (<CardCountries key={el.numericCode} id={el.alpha3Code} img={el.flags.png} name={el.name} poblacion={el.population} capital={el.capital} region={el.region} />))
                 }
             </div>
+            <div className='btn'>
+            <button onClick={prevPage}>Prev</button>
+            <button onClick={nextPage}>Next</button>
+            </div>
+            
         </>
     )
 }
