@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { cleanCountry, GetCountryId } from '../redux/actions/GetCountryId'
 import { BiArrowBack } from 'react-icons/bi'
 
@@ -12,7 +12,7 @@ export const DetailsCountry = () => {
     console.log(info);
     useEffect(() => {
         dispatch(GetCountryId(id));
-    }, [])
+    }, [id])
     useEffect(() => {
         return () => {
             dispatch(cleanCountry())
@@ -24,39 +24,57 @@ export const DetailsCountry = () => {
     }
     return (
         <>
-            <button onClick={volver}><BiArrowBack /> volver</button>
+            <button onClick={volver} className="btn"><BiArrowBack className='emoticon' /> Back</button>
             <div className="container_data">
-                <div className="contenedor_img">
-                    <img src={info?.flags.png} alt="Img" width="350px" height="300px" />
+                <div className="container_img">
+                    <img src={info?.flags.png} alt="Img" width="500px" height="400px" />
                 </div>
-                <div className="container_info-1">
-                    <h2>{info?.name}</h2>
-                    <h4>Capital: {info?.capital}</h4>
-                    <h4>Poblacion: {info?.population}</h4>
-                    <h4>Region: {info?.region}</h4>
-                    <h4>SubRegion: {info?.subregion}</h4>
-                </div>
-                <div className="container_info-2">
-                    <h4>Idioma:
-                    {
-                        info?.languages.map(el => (<span key={info.languages.indexOf(el)}>{el.name}</span>))
-                    }
-                    </h4>
-                    
-                    {
-                        info?.currencies.map(el => (<h4 key={el}>Moneda: {el.name}</h4>))
-                    }
-                    {
-                        info?.borders &&
-                        <>
-                            <h4>Paises Fronterizos</h4>
-                            <div className="container-country">
+                <div className="container_info">
+                    <div className="container_info-1">
+                        <h2>{info?.name}</h2>
+                    </div>
+                    <div className="container_info-2">
+                        <ul>
+                            <li>Native name: <span>{info?.nativeName}</span></li>
+                            <li>Population: <span>{info?.population}</span></li>
+                            <li>Region: <span>{info?.region}</span></li>
+                            <li>Sub Region: <span>{info?.subregion}</span></li>
+                            <li>Capital: <span>{info?.capital}</span></li>
+                        </ul>
+                        <ul>
+                            <li>Top Level Domain:
                                 {
-                                    info?.borders?.map(el => (<button key={el}><a href={`/country/${el}`}>{el}</a></button>))
+                                    info?.topLevelDomain.map(el => (<span key={el}> {el}</span>))
                                 }
-                            </div>
-                        </>
-                    }
+                            </li>
+                            <li>Currencies:
+                                {
+                                    info?.currencies.map(el => (<span key={el}> {el.name}</span>))
+                                }
+                            </li>
+                            <li>Languagues:
+                                {
+                                    info?.languages.map(el => (<span key={info.languages.indexOf(el)}> {el.name}</span>))
+                                }
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="container_info-3">
+                        {
+                            info?.borders &&
+                            <>
+                                <h4>Border Countries:
+                                    {
+                                        info?.borders?.map(el => (
+                                            <button key={info.borders.indexOf(el)} onClick={() => navigate(`/country/${el}`)}>
+                                                {el}
+                                            </button>
+                                        ))
+                                    }
+                                </h4>
+                            </>
+                        }
+                    </div>
                 </div>
             </div>
         </>

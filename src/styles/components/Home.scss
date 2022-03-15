@@ -4,43 +4,29 @@ body {
 }
 
 .container_all {
-    background-color: $p;
+    background-color: $FMC;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     padding: 40px;
     gap: 3rem;
-
-    @media (max-width:1000px){
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        padding: 40px;
-        gap: 3rem;
-    }
-    @media (max-width:800px) {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        padding: 40px;
-        gap: 3rem;
-    }
-    @media (max-width:500px){
-        display: grid;
-        grid-template-columns: repeat(1, minmax(0, 1fr));
-        padding: 40px;
-        gap: rem;
-    }
 }
 .input_Search{
     height:7vh;
     width:40vw;
     border: 0;
-    background-color: #eee;
-    border-radius:6px
+    border-radius:6px;
+    color:$IMC
 }
-.input_Search:focus{
-    border-color: white;
-}
+
 .container_filter{
     display:flex;
     justify-content:space-between;
     padding: 50px;
+    background-color: $FMC;
+}
+.container_inicio{
+    display:flex;
+    justify-content:space-between;
+    font-size:14px;
+    color: $LMC;
 }
